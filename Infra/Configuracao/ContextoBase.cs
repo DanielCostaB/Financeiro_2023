@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Infra.Configuracao
 {
-    public class ContextoBase : IdentityDbContext<ApplicationUser>
+    public class ContextBase : IdentityDbContext<ApplicationUser>
     {
-        public ContextoBase( DbContextOptions options) : base(options) 
+        public ContextBase( DbContextOptions options) : base(options) 
         {
         }
 

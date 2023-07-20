@@ -13,16 +13,16 @@ namespace Infra.Repositorio.Generics
 {
     public class RepositoryGenerics<T> : InterfaceGeneric<T> , IDisposable where T : class
     {
-        private readonly DbContextOptions<ContextoBase> _OptionsBuilder;
+        private readonly DbContextOptions<ContextBase> _OptionsBuilder;
 
         public RepositoryGenerics() 
         {
-            _OptionsBuilder = new DbContextOptions<ContextoBase>();
+            _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
 
         public async Task Add(T obj)
         {
-            using (var data = new ContextoBase(_OptionsBuilder))
+            using (var data = new ContextBase(_OptionsBuilder))
             {
                 await data.Set<T>().AddAsync(obj);
                 await data.SaveChangesAsync();
@@ -31,7 +31,7 @@ namespace Infra.Repositorio.Generics
 
         public async Task Delete(T obj)
         {
-            using (var data = new ContextoBase(_OptionsBuilder))
+            using (var data = new ContextBase(_OptionsBuilder))
             {
                 data.Set<T>().Remove(obj);
                 await data.SaveChangesAsync();
@@ -40,7 +40,7 @@ namespace Infra.Repositorio.Generics
 
         public async Task<T> GetEntityById(int Id)
         {
-            using (var data = new ContextoBase(_OptionsBuilder))
+            using (var data = new ContextBase(_OptionsBuilder))
             {
                 return await data.Set<T>().FindAsync(Id);
             }
@@ -48,7 +48,7 @@ namespace Infra.Repositorio.Generics
 
         public async Task<List<T>> List()
         {
-            using (var data = new ContextoBase(_OptionsBuilder))
+            using (var data = new ContextBase(_OptionsBuilder))
             {
                return await data.Set<T>().ToListAsync();
             }
@@ -56,7 +56,7 @@ namespace Infra.Repositorio.Generics
 
         public async Task Update(T obj)
         {
-            using (var data = new ContextoBase(_OptionsBuilder))
+            using (var data = new ContextBase(_OptionsBuilder))
             {
                 data.Set<T>().Update(obj);
                 await data.SaveChangesAsync();
