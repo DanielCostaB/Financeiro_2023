@@ -1,4 +1,4 @@
-﻿using Domain.interfaces.ICategoria;
+﻿using Domain.interfaces.IDespesa;
 using Entities.Entidades;
 using Infra.Repositorio.Generics;
 using System;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Infra.Repositorio
 {
-    public class RepositorioCategoria : RepositoryGenerics<Categoria>, InterfaceCategoria
+    public class RepositorioDespesa : RepositoryGenerics<Despesa>, InterfaceDespesa
     {
     }
 }
