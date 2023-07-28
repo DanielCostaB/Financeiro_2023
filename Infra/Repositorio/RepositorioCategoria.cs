@@ -24,7 +24,8 @@ namespace Infra.Repositorio
             {
                 return await
                     (from s in banco.SistemaFinanceiro
-                     join c in banco.UsuarioSistemaFinanceiro on s.Id equals us.IdSistema
+                     join c in banco.Categoria on s.Id equals c.IdSistema
+                     join us in banco.UsuarioSistemaFinanceiro on s.Id equals us.IdSistema
                      where us.EmailUsuario.Equals(emailUsuario) && us.SistemaAtual
                     select c).AsNoTracking().ToListAsync();
             }
