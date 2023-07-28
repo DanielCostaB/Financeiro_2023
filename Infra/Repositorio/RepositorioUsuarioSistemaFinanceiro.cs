@@ -31,12 +31,22 @@ namespace Infra.Repositorio
 
         public async Task<UsuarioSistemaFinanceiro> ObterUsuarioPorEmail(string emailUsuario)
         {
-            throw new NotImplementedException();
+            using (var banco = new ContextBase(_OptionsBuilder))
+            {
+              return await
+                banco.UsuarioSistemaFinanceiro.AsNoTracking().FirstOrDefaultAsync(x => x.EmailUsuario.Equals(emailUsuario));
+            }
         }
 
         public async Task RemoveUsuarios(List<UsuarioSistemaFinanceiro> usuarios)
         {
-            throw new NotImplementedException();
+            using (var banco = new ContextBase(_OptionsBuilder))
+            {
+                banco.UsuarioSistemaFinanceiro
+                .RemoveRange(usuarios);
+
+                await banco.SaveChangesAsync();
+            }
         }
     }
 }
