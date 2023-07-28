@@ -34,7 +34,16 @@ namespace Infra.Repositorio
 
         public async Task<IList<Despesa>> ListarDespesasUsuarioNaoPagasMesesAnterior(string emailUsuario)
         {
-            throw new NotImplementedException();
+            using (var banco = new ContextBase(_OptionsBuilder))
+            {
+                return await
+                    (from s in banco.SistemaFinanceiro
+                     join c in banco.Categoria on s.Id equals c.IdSistema
+                     join us in banco.UsuarioSistemaFinanceiro on s.Id equals us.IdSistema
+                     join d in banco.Despesa on c.Id equals d.IdCategoria
+                     where us.EmailUsuario.Equals(emailUsuario) && d.Mes < DateTime.Now.Month && !d.Pago
+                     select d).AsNoTracking().ToListAsync();
+            }
         }
     }
 }
