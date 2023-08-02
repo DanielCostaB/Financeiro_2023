@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.interfaces.InterfaceServicos
 {
-    public interface IUsuarioSistemaFinanceiro
+    public interface IUsuarioSistemaFinanceiroServico
     {
     }
 }
