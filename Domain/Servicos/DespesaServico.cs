@@ -20,12 +20,26 @@ namespace Domain.Servicos
 
         public async Task AdicionarDespesa(Despesa despesa)
         {
-           
+            var data = DateTime.UtcNow;
+            despesa.DataCadastro = data;
+            despesa.Ano = data.Year;
+            despesa.Mes = data.Month;
+
+            var valido = despesa.ValidarPropriedadeString(despesa.NomePropriedade, "Nome");
+            if (valido)
+                await _InterfaceDespesa.Add(despesa);
         }
 
         public async Task AtualizarDespesa(Despesa despesa)
         {
-           
+            var data = DateTime.UtcNow;
+            despesa.DataCadastro = data;
+            despesa.Ano = data.Year;
+            despesa.Mes = data.Month;
+
+            var valido = despesa.ValidarPropriedadeString(despesa.NomePropriedade, "Nome");
+            if (valido)
+                await _InterfaceDespesa.Add(despesa);
         }
     }
 }
