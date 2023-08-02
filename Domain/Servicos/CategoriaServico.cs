@@ -16,9 +16,6 @@ namespace Domain.Servicos
         {
             _interfaceCategoria = interfaceCategoria;
         }
-        public CategoriaServico() 
-        { 
-        }
 
         public async Task AdicionarCategoria(Categoria catagoria)
         {
